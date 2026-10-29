@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Digital: Infraestructura de Redes en el Perú & ODS 9</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        brand: {
+                            blue: '#2563eb',
+                            teal: '#0d9488',
+                            cyan: '#06b6d4',
+                            emerald: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-600 via-teal-500 to-emerald-500 z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 text-white backdrop-blur border-b border-slate-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Title -->
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-gradient-to-br from-blue-600 to-teal-500 rounded-xl shadow-md text-white">
+                        <i data-lucide="network" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-teal-400 block">Portafolio Digital Académico</span>
+                        <h1 class="text-lg font-bold tracking-tight text-white leading-tight hidden sm:block">Conectando al Perú & ODS 9</h1>
+                        <h1 class="text-base font-bold text-white sm:hidden">Redes Perú ODS 9</h1>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium">
+                    <a href="#inicio" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">Inicio</a>
+                    <a href="#ods9" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5"><i data-lucide="globe" class="w-4 h-4 text-emerald-400"></i> ODS 9</a>
+                    <a href="#sesion2" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">S2: Macroestructura</a>
+                    <a href="#sesion7" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">S7: Texto Expositivo</a>
+                    <a href="#sesion8" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">S8: Reseña Comparativa</a>
+                    <a href="#equipo" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">Equipo</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <span class="text-xs px-3 py-1.5 rounded-full bg-slate-800 text-teal-300 border border-teal-500/30 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        UCV 2026
+                    </span>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Inicio</a>
+            <a href="#ods9" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-400 hover:bg-slate-800">Eje ODS 9</a>
+            <a href="#sesion2" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Sesión 2: Matriz Macroestructura</a>
+            <a href="#sesion7" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Sesión 7: Texto Expositivo Integrador</a>
+            <a href="#sesion8" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Sesión 8: Reseña Comparativa</a>
+            <a href="#equipo" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Equipo de Investigación</a>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <section id="inicio" class="relative bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-white pt-12 pb-24 overflow-hidden">
+        <!-- Background Grid Effect -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto space-y-6">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs sm:text-sm font-medium">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-400"></i>
+                    <span>Habilidades Comunicativas • Escuela Profesional de Ingeniería de Sistemas</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
+                    Conectando al Perú: <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-teal-300 to-emerald-400">Infraestructura de Redes, Inclusión Digital</span> y el ODS 9
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-light max-w-3xl mx-auto">
+                    Portafolio académico integral que sistematiza la investigación formativa sobre la influencia de las redes de comunicaciones en el acceso a servicios digitales y el cierre de la brecha digital territorial en el Perú.
+                </p>
+
+                <!-- Quick Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+                    <a href="#sesion7" class="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/30 transition flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                        Leer Texto Expositivo
+                    </a>
+                    <a href="#sesion2" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-700 transition flex items-center gap-2">
+                        <i data-lucide="table" class="w-5 h-5 text-teal-400"></i>
+                        Ver Matriz de Investigación
+                    </a>
+                </div>
+            </div>
+
+            <!-- Key Indicators Metrics Cards Grid -->
+            <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Metric 1 -->
+                <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 hover:border-blue-500/50 transition shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Acceso Nacional</span>
+                        <div class="p-2 bg-blue-500/10 rounded-lg text-blue-400"><i data-lucide="wifi" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="text-3xl font-extrabold text-white mb-1">62.7%</div>
+                    <p class="text-xs text-slate-400">Hogares peruanos con acceso a Internet (INEI, 2026).</p>
+                </div>
+
+                <!-- Metric 2 -->
+                <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 hover:border-blue-500/50 transition shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Brecha Urbano / Rural</span>
+                        <div class="p-2 bg-teal-500/10 rounded-lg text-teal-400"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="text-3xl font-extrabold text-white mb-1">82.7% vs 25.0%</div>
+                    <p class="text-xs text-slate-400">Lima Metropolitana vs. Cobertura en Área Rural (Brecha 57.7%).</p>
+                </div>
+
+                <!-- Metric 3 -->
+                <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 hover:border-blue-500/50 transition shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Despliegue 5G</span>
+                        <div class="p-2 bg-emerald-500/10 rounded-lg text-emerald-400"><i data-lucide="tower-control" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="text-3xl font-extrabold text-white mb-1">3,889</div>
+                    <p class="text-xs text-slate-400">Antenas 5G instaladas a nivel nacional (MTC, 2026).</p>
+                </div>
+
+                <!-- Metric 4 -->
+                <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 hover:border-blue-500/50 transition shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Fibra Óptica Regional</span>
+                        <div class="p-2 bg-cyan-500/10 rounded-lg text-cyan-400"><i data-lucide="cable" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="text-3xl font-extrabold text-white mb-1">+7,000 km</div>
+                    <p class="text-xs text-slate-400">Tendido en San Martín, Arequipa, La Libertad y Áncash.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transversal Axis Banner: ODS 9 -->
+    <section id="ods9" class="py-16 bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white relative overflow-hidden border-y border-emerald-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- ODS Badge / Icon Column -->
+                <div class="lg:col-span-4 text-center lg:text-left space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold tracking-wider uppercase border border-emerald-500/30">
+                        <i data-lucide="target" class="w-4 h-4"></i> Eje Transversal de Sostenibilidad
+                    </div>
+                    <div class="flex items-center justify-center lg:justify-start gap-4">
+                        <div class="w-16 h-16 rounded-2xl bg-orange-600 flex items-center justify-center text-white font-extrabold text-2xl shadow-xl border-2 border-white/20">
+                            9
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">ODS 9: Industria, Innovación e Infraestructura</h2>
+                            <p class="text-emerald-300 font-medium text-sm">Meta 9.c: Acceso Universal y Asequible a las TIC</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation Body Column -->
+                <div class="lg:col-span-8 bg-slate-900/60 backdrop-blur p-6 sm:p-8 rounded-2xl border border-emerald-500/30 space-y-4">
+                    <h3 class="text-lg font-semibold text-emerald-300 flex items-center gap-2">
+                        <i data-lucide="link" class="w-5 h-5 text-emerald-400"></i>
+                        Articulación Directa con la Investigación Formativa
+                    </h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        El <strong>Objetivo de Desarrollo Sostenible 9</strong> constituye el pilar orientador de este portafolio digital. La infraestructura de telecomunicaciones no es únicamente un requerimiento técnico, sino un <strong>catalizador de equidad social y desarrollo económico</strong>. 
+                    </p>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        A través de las distintas sesiones académicas de este blog (Matriz, Texto Expositivo y Reseña Comparativa), se demuestra cómo el despliegue de redes troncales, fibra óptica y tecnología 5G contribuye directamente a la <strong>Meta 9.c</strong>, buscando reducir sustancialmente la brecha digital en zonas rurales del Perú y garantizar que el acceso a Internet sea un derecho efectivo, confiable y asequible para todos los peruanos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Navigation Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- ENTRY 1 / SESSION 2: MATRIZ DE MACROESTRUCTURA TEXTUAL -->
+        <section id="sesion2" class="scroll-mt-24 space-y-8">
+            <!-- Entry Header -->
+            <div class="border-b border-slate-200 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-semibold text-blue-600 uppercase tracking-widest mb-2">
+                        <span class="px-2.5 py-1 bg-blue-100 rounded-md">Sesión 2</span>
+                        <span>• Entrada 1</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        Matriz de Macroestructura Textual y Planificación de Fuentes
+                    </h2>
+                </div>
+                <div class="flex items-center gap-2 text-slate-500 text-xs font-medium">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Ciclo I - 2026
+                </div>
+            </div>
+
+            <!-- Pedagogy / Explanation Box: Importance of Macrostructure -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 sm:p-8 space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-blue-600 text-white rounded-xl shrink-0 hidden sm:block">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-blue-900 flex items-center gap-2">
+                            <i data-lucide="lightbulb" class="w-5 h-5 text-blue-600 sm:hidden"></i>
+                            ¿Por qué es fundamental la Matriz de Macroestructura Textual?
+                        </h3>
+                        <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                            La <strong>macroestructura textual</strong> representa la arquitectura global del significado de un texto académico expositivo. Su elaboración en las etapas iniciales de investigación es clave por las siguientes razones:
+                        </p>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700 pt-2">
+                            <li class="flex items-start gap-2 bg-white/80 p-3 rounded-lg border border-blue-100">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Garantiza la Coherencia Global:</strong> Organiza los subtemas de forma jerárquica y lógica, evitando lagunas de información o redundancias.</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-white/80 p-3 rounded-lg border border-blue-100">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Rigurosidad y Selección de Fuentes:</strong> Vincula cada subtema con instituciones oficiales y confiables (MTC, INEI, PRONATEL, OSIPTEL).</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-white/80 p-3 rounded-lg border border-blue-100">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Distribución Colaborativa:</strong> Delimita las responsabilidades de indagación académica entre los integrantes del equipo.</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-white/80 p-3 rounded-lg border border-blue-100">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Alineamiento Institucional:</strong> Asegura la coherencia directa entre la pregunta de investigación, los objetivos y la meta 9.c del ODS 9.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete Interactive Matrix Table -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-5 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-base sm:text-lg flex items-center gap-2">
+                            <i data-lucide="table-properties" class="w-5 h-5 text-teal-400"></i>
+                            Matriz de Selección de Fuentes y Macroestructura Textual (Grupo 5)
+                        </h3>
+                        <p class="text-xs text-slate-400">Tema General: Infraestructura de servicios de redes y comunicaciones en el Perú</p>
+                    </div>
+                    <span class="text-xs bg-teal-500/20 text-teal-300 border border-teal-500/40 px-3 py-1 rounded-full font-medium">
+                        Fuentes Institucionales Verificadas
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                                <th class="p-4 w-1/5">Tema & Pregunta</th>
+                                <th class="p-4 w-1/4">Subtemas Planificados</th>
+                                <th class="p-4 w-1/6">Tipo de Fuente</th>
+                                <th class="p-4 w-1/4">Enlace Institucional</th>
+                                <th class="p-4 w-1/6">Estudiante Responsable</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-medium text-slate-900 bg-slate-50/50" rowspan="5">
+                                    <div class="space-y-2">
+                                        <p class="font-bold text-blue-900">Infraestructura de servicios de redes y comunicaciones en el Perú.</p>
+                                        <hr class="border-slate-200">
+                                        <p class="text-xs text-slate-600"><strong>Pregunta:</strong> ¿Cómo influye la infraestructura de redes y comunicaciones en el acceso a internet y los servicios digitales en el Perú?</p>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-medium">1. Contexto actual de la infraestructura de redes y comunicaciones a nivel mundial.</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-amber-100 text-amber-800 rounded font-semibold text-xs">OSIPTEL</span></td>
+                                <td class="p-4">
+                                    <a href="https://repositorio.osiptel.gob.pe/bitstream/handle/20.500.12630/646/osiptel-com-edicion03.pdf?sequence=1&isAllowed=y" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1 font-mono text-xs truncate max-w-[200px]">
+                                        <i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i> Ver Repositorio OSIPTEL
+                                    </a>
+                                </td>
+                                <td class="p-4 font-medium text-slate-900">Jaret Samir Medina López</td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-medium">2. Importancia de las redes para los servicios digitales a nivel mundial.</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-800 rounded font-semibold text-xs">INEI</span></td>
+                                <td class="p-4">
+                                    <a href="https://www.gob.pe/institucion/inei/noticias/1412359-el-62-7-de-los-hogares-del-pais-tuvo-conexion-a-internet-entre-los-meses-de-enero-y-marzo-de-2026" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1 font-mono text-xs truncate max-w-[200px]">
+                                        <i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i> Nota de Prensa INEI 2026
+                                    </a>
+                                </td>
+                                <td class="p-4 font-medium text-slate-900">Minhee George Orihuela Vega</td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-medium">3. Brecha digital entre zonas urbanas y rurales en el Perú.</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-purple-100 text-purple-800 rounded font-semibold text-xs">PRONATEL</span></td>
+                                <td class="p-4">
+                                    <a href="https://www.gob.pe/institucion/pronatel/noticias/1309845-pronatel-reafirma-compromiso-con-cierre-de-la-brecha-digital-en-zonas-rurales-del-pais" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1 font-mono text-xs truncate max-w-[200px]">
+                                        <i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i> Portal Oficial PRONATEL
+                                    </a>
+                                </td>
+                                <td class="p-4 font-medium text-slate-900">Orlando Rodríguez Zelada</td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-medium">4. Definición de la infraestructura de servicios de redes y comunicaciones.</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded font-semibold text-xs">MTC</span></td>
+                                <td class="p-4">
+                                    <a href="https://www.gob.pe/institucion/mtc/noticias/1407476-proyectos-regionales-de-banda-ancha-amplian-el-acceso-a-internet-en-mas-de-1600-localidades-de-cuatro-regiones-del-pais" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1 font-mono text-xs truncate max-w-[200px]">
+                                        <i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i> Comunicado MTC Banda Ancha
+                                    </a>
+                                </td>
+                                <td class="p-4 font-medium text-slate-900">Anthony Rodríguez Medina</td>
+                            </tr>
+                            <!-- Row 5 -->
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-medium">5. Redes de fibra óptica y tecnología 5G.</td>
+                                <td class="p-4"><span class="px-2 py-1 bg-cyan-100 text-cyan-800 rounded font-semibold text-xs">GOBIERNO PERÚ</span></td>
+                                <td class="p-4">
+                                    <a href="https://www.gob.pe/institucion/mtc/noticias/1371695-peru-acelera-el-despliegue-de-5g-con-mas-de-3-800-antenas-instaladas" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1 font-mono text-xs truncate max-w-[200px]">
+                                        <i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i> Portal Despliegue 5G Perú
+                                    </a>
+                                </td>
+                                <td class="p-4 font-medium text-slate-900">Jorge Solis Rojas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENTRY 2 / SESSION 7: TEXTO EXPOSITIVO COMPLETO & PANEL EXPLICATIVO -->
+        <section id="sesion7" class="scroll-mt-24 space-y-8">
+            <!-- Entry Header -->
+            <div class="border-b border-slate-200 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-semibold text-teal-600 uppercase tracking-widest mb-2">
+                        <span class="px-2.5 py-1 bg-teal-100 rounded-md">Sesión 7</span>
+                        <span>• Entrada 2</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        Texto Expositivo Integrador & Panel Reflexivo
+                    </h2>
+                </div>
+                <div class="flex items-center gap-2 text-slate-500 text-xs font-medium">
+                    <i data-lucide="check-check" class="w-4 h-4 text-emerald-500"></i> Texto Revisado e Íntegro
+                </div>
+            </div>
+
+            <!-- Reflective Panel: Importance of Expository Text and Infrastructure -->
+            <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl border border-slate-800">
+                <div class="flex items-center gap-3 text-teal-400">
+                    <i data-lucide="presentation" class="w-6 h-6"></i>
+                    <h3 class="text-xl font-bold">Panel Reflexivo: Importancia del Texto Expositivo y la Conectividad Digital</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm sm:text-base text-slate-300">
+                    <div class="space-y-3 bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-white flex items-center gap-2">
+                            <i data-lucide="file-check-2" class="w-4 h-4 text-blue-400"></i> El Valor del Texto Expositivo
+                        </h4>
+                        <p class="leading-relaxed text-xs sm:text-sm">
+                            El texto expositivo académico es el vehículo fundamental para transmitir conocimiento objetivo de manera neutral, rigurosa y fundamentada. Permite sintetizar datos estadísticos complejos y normativas gubernamentales para poner al alcance de la comunidad académica una visión clara sobre realidades sociales.
+                        </p>
+                    </div>
+                    <div class="space-y-3 bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-white flex items-center gap-2">
+                            <i data-lucide="activity" class="w-4 h-4 text-teal-400"></i> Impacto Multiplicador de las Redes
+                        </h4>
+                        <p class="leading-relaxed text-xs sm:text-sm">
+                            Desde la Ingeniería de Sistemas, la infraestructura de telecomunicaciones es el soporte invisible sobre el cual operan los servicios esenciales: <strong>Teleeducación</strong> para sectores vulnerables, <strong>Telesalud</strong> en postas alejadas, <strong>Comercio Electrónico</strong> para Mipymes y <strong>Gobierno Digital</strong> transparente. Sin redes estables, los avances de software quedan inalcanzables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Expository Text Body -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 sm:p-10 space-y-10">
+                <!-- Academic Header of Document -->
+                <div class="text-center space-y-3 border-b border-slate-200 pb-8">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">UNIVERSIDAD CÉSAR VALLEJO • FACULTAD DE INGENIERÍA</p>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 max-w-3xl mx-auto uppercase">
+                        Infraestructura de Servicios de Redes y Comunicaciones en el Perú
+                    </h3>
+                    <p class="text-sm font-semibold text-teal-700">ODS 9: Industria, Innovación e Infraestructura (Meta 9.c)</p>
+                    <div class="pt-2 text-xs text-slate-600 flex flex-wrap justify-center gap-x-4 gap-y-1">
+                        <span><strong>Autores:</strong> J. Medina, M. Orihuela, O. Rodríguez, A. Rodríguez, J. Solis</span>
+                        <span>• <strong>Docente:</strong> Betty Principe</span>
+                        <span>• <strong>Año:</strong> 2026</span>
+                    </div>
+                </div>
+
+                <!-- Section I: INTRODUCCIÓN -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-l-4 border-blue-600 pl-3">
+                        I. INTRODUCCIÓN
+                    </h4>
+                    <div class="text-slate-700 text-sm sm:text-base leading-relaxed space-y-4">
+                        <p>
+                            En la actualidad, el acceso a Internet y a los servicios digitales tiene una importancia crucial para la educación, la salud, las actividades económicas, la comunicación social y la gestión pública. Para que estos servicios funcionen de manera eficiente, se requiere de una infraestructura capaz de transportar información con altos estándares de cobertura, capacidad y estabilidad.
+                        </p>
+                        <p>
+                            El tema es especialmente relevante en el Perú debido a las persistentes diferencias de conectividad entre zonas urbanas y rurales. El Instituto Nacional de Estadística e Informática (INEI) reportó que en el primer trimestre de 2026 el 62,7 % de los hogares a nivel nacional contaba con acceso a Internet. Sin embargo, en Lima Metropolitana el porcentaje alcanzó un 82,7 %, mientras que en el área rural solo llegó al 25,0 %, evidenciando una brecha territorial profunda.
+                        </p>
+                        <p>
+                            Frente a este escenario, el Estado viene desarrollando proyectos para ampliar la infraestructura de transporte y acceso. El Ministerio de Transportes y Comunicaciones (MTC) informó en junio de 2026 que los proyectos regionales de banda ancha ampliaron el acceso en más de 1 600 localidades de San Martín, Arequipa, La Libertad y Áncash, mediante el despliegue de más de 7 000 kilómetros de fibra óptica. Esta conectividad permite impulsar servicios de teleeducación, telesalud y trámites de gobierno digital.
+                        </p>
+                        <p>
+                            Paralelamente, la modernización tecnológica avanza con la implantación de redes móviles de última generación. En marzo de 2026, el MTC informó que se habían instalado 3 889 antenas 5G a nivel nacional, tecnología que brinda mayor velocidad, menor latencia y capacidad para interconectar múltiples dispositivos simultáneamente.
+                        </p>
+                        <p>
+                            Desde la perspectiva de la Ingeniería de Sistemas, la infraestructura de comunicaciones es fundamental pues los sistemas de información y software dependen críticamente de las redes físicas e inalámbricas para el transporte de datos. Estudiar esta infraestructura permite comprender los retos de inclusión digital y desarrollo sostenible del país.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section IV: RESULTADOS -->
+                <div class="space-y-4 pt-4">
+                    <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-l-4 border-teal-600 pl-3">
+                        IV. RESULTADOS
+                    </h4>
+                    <div class="text-slate-700 text-sm sm:text-base leading-relaxed space-y-4">
+                        <p>
+                            A partir de la revisión sistemática de las fuentes institucionales, se identificó que el acceso a Internet en el Perú presenta notables disparidades territoriales. Durante el primer trimestre de 2026, el 62,7 % de los hogares contaba con conexión a Internet. No obstante, al desglosar geográficamente, Lima Metropolitana registró un 82,7 %, en contraste con el área rural que alcanzó únicamente el 25,0 %, configurando una diferencia crítica de 57,7 puntos porcentuales (INEI, 2026).
+                        </p>
+                        <p>
+                            En términos de avance de la infraestructura física, los proyectos regionales de banda ancha incorporaron más de 1 600 localidades en cuatro regiones clave (San Martín, Arequipa, La Libertad y Áncash), respaldados por más de 7 000 kilómetros de red de fibra óptica. Adicionalmente, el despliegue de la quinta generación de tecnologías móviles registró la cifra consolidada de 3 889 antenas 5G operativas a nivel nacional (MTC, 2026).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section V: DISCUSIÓN -->
+                <div class="space-y-4 pt-4">
+                    <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2 border-l-4 border-emerald-600 pl-3">
+                        V. DISCUSIÓN
+                    </h4>
+                    <div class="text-slate-700 text-sm sm:text-base leading-relaxed space-y-4">
+                        <p>
+                            Los datos examinados demuestran que la infraestructura de redes condiciona de forma directa la efectividad del acceso a los servicios digitales en el Perú. Si bien la fibra óptica y el despliegue de la tecnología 5G representan oportunidades sin precedentes para elevar la velocidad y capacidad del flujo de información, la marcada brecha entre Lima y el ámbito rural confirma que la sola expansión técnica no asegura una equidad inmediata.
+                        </p>
+                        <p>
+                            Para garantizar una verdadera inclusión digital, el tendido de fibra óptica y la instalación de antenas deben ser complementados con tarifas asequibles, estabilidad del suministro eléctrico en zonas alejadas y programas intensivos de alfabetización digital para la población rural. El análisis académico concluye que estos avances se alinean con la <strong>Meta 9.c del ODS 9</strong>, reafirmando que el desarrollo de infraestructura debe medirse no solo por indicadores cuantitativos de equipamiento, sino por el impacto cualitativo en la calidad de vida de los ciudadanos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section VI: REFERENCIAS BIBLIOGRÁFICAS APA -->
+                <div class="space-y-4 pt-6 border-t border-slate-200">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-5 h-5 text-blue-600"></i> VI. REFERENCIAS BIBLIOGRÁFICAS (Norma APA)
+                        </h4>
+                        <button onclick="copyReferences()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-300 transition flex items-center gap-1.5">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Citas
+                        </button>
+                    </div>
+                    <ul id="apa-references" class="space-y-3 text-xs sm:text-sm text-slate-600 font-mono bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <li>INEI. (2026). <em>El 62,7% de los hogares del país tuvo conexión a Internet entre enero y marzo de 2026</em>. Nota de Prensa Institucional. https://www.gob.pe/institucion/inei/noticias/1412359</li>
+                        <li>MTC. (2026). <em>Proyectos regionales de banda ancha amplían el acceso a internet en más de 1600 localidades de cuatro regiones</em>. Plataforma Digital Única del Estado Peruano. https://www.gob.pe/institucion/mtc/noticias/1407476</li>
+                        <li>MTC. (2026). <em>Perú acelera el despliegue de 5G con más de 3,800 antenas instaladas</em>. Nota Informativa Oficial. https://www.gob.pe/institucion/mtc/noticias/1371695</li>
+                        <li>Naciones Unidas. (2026). <em>Objetivo 9: Construir infraestructuras resilientes, promover la industrialización inclusiva y sostenible y fomentar la innovación</em>. https://www.un.org/sustainabledevelopment/es/infrastructure/</li>
+                        <li>PRONATEL. (2025). <em>Pronatel reafirma compromiso con cierre de la brecha digital en zonas rurales del país</em>. Ministerio de Transportes y Comunicaciones. https://www.gob.pe/institucion/pronatel/noticias/1309845</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENTRY 3 / SESSION 8: RESEÑA COMPARATIVA -->
+        <section id="sesion8" class="scroll-mt-24 space-y-8">
+            <!-- Entry Header -->
+            <div class="border-b border-slate-200 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-semibold text-purple-600 uppercase tracking-widest mb-2">
+                        <span class="px-2.5 py-1 bg-purple-100 rounded-md">Sesión 8</span>
+                        <span>• Entrada 3</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                        Reseña Comparativa: Despliegue de Fibra/5G vs. Brecha Digital Rural
+                    </h2>
+                </div>
+                <div class="flex items-center gap-2 text-slate-500 text-xs font-medium">
+                    <i data-lucide="git-compare" class="w-4 h-4 text-purple-600"></i> Análisis Académico Crítico
+                </div>
+            </div>
+
+            <!-- Introduction to Comparative Review -->
+            <p class="text-slate-700 text-base leading-relaxed">
+                En esta entrada se evalúan y comparan críticamente las fuentes oficiales utilizadas en la investigación. Se contrapone el discurso triunfalista del despliegue de tecnologías avanzadas (5G y Fibra Óptica urbana) frente a los datos duros de exclusión digital manifestados en el ámbito rural peruano.
+            </p>
+
+            <!-- Comparative Grid Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Source A Column -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4 hover:border-blue-400 transition">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-bold text-xs">Eje Modernización Tecnológica</span>
+                        <span class="text-xs text-slate-500">MTC / OSIPTEL</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-lg">Enfoque de Expansión Urbana y Redes 5G</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Las publicaciones del MTC resaltan el despliegue de 3,889 antenas 5G y el tendido masivo de fibra óptica regional como hitos de competitividad. Se concentran en métricas de infraestructura instalada y capacidad de transmisión de datos a gran escala.
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                        <span class="text-xs font-bold text-slate-700 block uppercase">Puntos Fuertes:</span>
+                        <p class="text-xs text-slate-600">• Muestra el avance hacia estándares internacionales de latencia y velocidad.</p>
+                        <p class="text-xs text-slate-600">• Detalla inversiones en regiones estratégicas (Arequipa, La Libertad, San Martín).</p>
+                    </div>
+                </div>
+
+                <!-- Source B Column -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4 hover:border-purple-400 transition">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-xs">Eje Inclusión y Realidad Social</span>
+                        <span class="text-xs text-slate-500">INEI / PRONATEL</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-lg">Enfoque de Brecha Digital e Inclusión Rural</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Las notas de prensa e informes de INEI y PRONATEL visibilizan la desigualdad territorial. Al registrar que solo el 25% de los hogares rurales accede a Internet, demuestran que el mercado por sí solo no resuelve la dispersión geográfica.
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                        <span class="text-xs font-bold text-slate-700 block uppercase">Puntos Fuertes:</span>
+                        <p class="text-xs text-slate-600">• Evidencia la brecha de 57.7% entre Lima Metropolitana y áreas rurales.</p>
+                        <p class="text-xs text-slate-600">• Reafirma la necesidad de subsidios estatales y alfabetización digital.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Synthesis & Evaluation -->
+            <div class="bg-gradient-to-r from-purple-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-4">
+                <h3 class="text-lg font-bold text-purple-300 flex items-center gap-2">
+                    <i data-lucide="scale" class="w-5 h-5 text-purple-400"></i> Síntesis Comparativa Académica
+                </h3>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    De la comparación de las fuentes se concluye que existe una <strong>dualidad en el sistema de telecomunicaciones peruano</strong>. Mientras los indicadores del MTC reflejan una rápida aceleración tecnológica en nodos urbanos mediante redes 5G, las estadísticas del INEI obligan a mantener una perspectiva crítica: el verdadero progreso nacional no se alcanzará sumando antenas de alta velocidad en las ciudades, sino garantizando que la Red Dorsal y los proyectos de PRONATEL aseguren un servicio accesible y continuo para el 75% de la población rural que aún permanece desconectada.
+                </p>
+            </div>
+        </section>
+
+        <!-- TEAM MEMBERS SECTION -->
+        <section id="equipo" class="scroll-mt-24 space-y-8 border-t border-slate-200 pt-16">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-semibold uppercase tracking-widest text-blue-600">Trabajo de Investigación Formativa</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Equipo de Autores (Grupo 5)</h2>
+                <p class="text-slate-600 text-sm max-w-xl mx-auto">
+                    Estudiantes del 1er Ciclo de la Escuela Profesional de Ingeniería de Sistemas - Universidad César Vallejo (2026).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Member 1 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto text-blue-700 font-bold text-lg">
+                        JM
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Jaret Samir Medina López</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Ingeniería de Sistemas</p>
+                    </div>
+                    <a href="https://orcid.org/0009-0006-6932-8030" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:underline">
+                        <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> ORCID Verificado
+                    </a>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mx-auto text-teal-700 font-bold text-lg">
+                        MO
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Minhee George Orihuela Vega</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Ingeniería de Sistemas</p>
+                    </div>
+                    <a href="https://orcid.org/0009-0006-5770-0333" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:underline">
+                        <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> ORCID Verificado
+                    </a>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mx-auto text-purple-700 font-bold text-lg">
+                        OR
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Orlando Rodríguez Zelada</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Ingeniería de Sistemas</p>
+                    </div>
+                    <a href="https://orcid.org/0009-0008-5165-0149" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:underline">
+                        <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> ORCID Verificado
+                    </a>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto text-amber-700 font-bold text-lg">
+                        AR
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Anthony Rodríguez Medina</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Ingeniería de Sistemas</p>
+                    </div>
+                    <a href="https://orcid.org/0009-0007-6610-8398" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:underline">
+                        <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> ORCID Verificado
+                    </a>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3 hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-700 font-bold text-lg">
+                        JS
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Jorge Solis Rojas</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Ingeniería de Sistemas</p>
+                    </div>
+                    <a href="https://orcid.org/0009-0007-2160-4822" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:underline">
+                        <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> ORCID Verificado
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Notification Toast for Clipboard -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl border border-slate-700 flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+        <span id="toast-msg" class="text-sm font-medium">Copiado al portapapeles</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div>
+                <p class="font-bold text-slate-200">Portafolio Digital Académico • Habilidades Comunicativas</p>
+                <p class="text-xs text-slate-500 mt-1">Universidad César Vallejo — Escuela Profesional de Ingeniería de Sistemas (2026)</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <a href="#inicio" class="hover:text-white transition">Ir Arriba</a>
+                <span>•</span>
+                <a href="#ods9" class="hover:text-white transition">ODS 9</a>
+                <span>•</span>
+                <a href="#sesion7" class="hover:text-white transition">Texto Expositivo</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hide mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Copy APA References
+        function copyReferences() {
+            const refList = document.getElementById('apa-references');
+            const textToCopy = Array.from(refList.querySelectorAll('li'))
+                .map(li => li.innerText)
+                .join('\n\n');
+
+            // Fallback copy implementation for iFrame compatibility
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast("Referencias APA copiadas al portapapeles");
+        }
+
+        // Custom Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
